@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <System.Runtime.CompilerServices>
 
+using namespace ParaMODAImpl;
+
 class ModaAlgorthims
 {
     internal static MappingNodesComparer MappingNodesComparer;

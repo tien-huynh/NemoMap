@@ -5,6 +5,8 @@
 #include <System.Collections.Generic>;
 #include <System.Linq>;
 
+using namespace ParaMODAImpl;
+
 class MappingNodesComparer
 {
 
