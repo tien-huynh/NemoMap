@@ -1,5 +1,6 @@
-﻿  ParaMODAAlgorithm.cpp
-f:\uwb\css 483\finalboost\paramodaimpl\paramodaalgorithm.cpp(27): warning C4018: '<': signed/unsigned mismatch
-f:\uwb\css 483\finalboost\paramodaimpl\paramodaalgorithm.cpp(83): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
+  ParaMODAAlgorithm.cpp
+f:\uwb\css 483\finalboost\paramodaimpl\paramodaalgorithm.cpp(35): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   ParaMODAImpl.vcxproj -> F:\UWB\CSS 483\FinalBoost\ParaMODAImpl\Debug\ParaMODAImpl.exe
   ParaMODAImpl.vcxproj -> F:\UWB\CSS 483\FinalBoost\ParaMODAImpl\Debug\ParaMODAImpl.pdb (Partial PDB)
