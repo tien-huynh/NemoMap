@@ -10,40 +10,37 @@ ParaMODAImpl::GraphProcessor::~GraphProcessor()
 {
 }
 
-QuickGraph::UndirectedGraph<int>^ ParaMODAImpl::GraphProcessor::LoadGraph(string filename, bool isQueryGraph)
+
+//Method to read graph input from file and construct inputGraph
+Graph ParaMODAImpl::GraphProcessor::LoadGraph(string filename)
 {
    string line;
    ifstream inFile(filename);
-   QuickGraph::UndirectedGraph<int>^ newGraphInstance;
-
-   if (isQueryGraph) //NEED WORK
-   {
-
-   }
-   else
-   {
-	  newGraphInstance = gcnew QuickGraph::UndirectedGraph<int>();
-   }
+   Graph newGraphInstance = Graph();
+   vector<pair<int, int>> edgeList;
 
    if (inFile.is_open())
    {
 	  while (getline(inFile, line))
 	  {
-		 if (size_t index = line.find_first_not_of(" ") != string::npos)
+		 if (int index = line.find_first_not_of(" ") != string::npos)
 		 {
 			if (line[index] != '#')
 			{
 			   int source, target;
+
 			   istringstream iss(line);
 				  iss >> source >> target;
-				  cout << source << "  --  " << target << endl;
-			   newGraphInstance->AddVerticesAndEdge(source, target);
+				  if (source != target)
+					edgeList.push_back(make_pair(source, target));
 			}
 		 }
 	  }
+	  newGraphInstance.AddVerticesAndEdgeRange(edgeList);
 	  inFile.close();
    }
    else
 	  cerr << "ERROR: Unable to open file" << endl;	  //NEED FURTHER CHECK
    return newGraphInstance;
 }
+

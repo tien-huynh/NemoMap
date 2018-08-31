@@ -1,5 +1,5 @@
 #pragma once
-#using "QuickGraph.dll"
+#include "Graph.h"
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -15,7 +15,8 @@ namespace ParaMODAImpl
 	  GraphProcessor();
 	  ~GraphProcessor();
 
-	  QuickGraph::UndirectedGraph<int>^ LoadGraph(string filename, bool isQueryGraph = false);
+	  //Method to read graph input from file and construct inputGraph
+	  Graph LoadGraph(string filename);
    };
 
 }
