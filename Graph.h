@@ -1,5 +1,10 @@
+/*	Filename:		Graph.h
+	Description:	Declaration of a Graph class
+	Author:			Tien Huynh
+*/
+
 #pragma once
-//#include <iterator>
+
 #include <iostream>
 #include <functional>
 #include <vector>
@@ -7,12 +12,6 @@
 #include "hopscotch_map.h"
 
 using namespace std;
-
-//struct int_pair_hash {
-//	inline size_t operator()(const std::pair<int, int> & pair) const {
-//		return hash<int>()(pair.first) + hash<int>()(pair.second);
-//	}
-//};
 
 class Graph
 {
@@ -23,50 +22,86 @@ public:
 	int getNumberOfVertices() { return vertexList.size(); };
 	int getNumberOfEdges() { return edgeList.size(); };
 
-	/*Method to get a list of all edges in the graph
-	Each entry of the return list is an edge (pair of <sourceId, targetId>)*/
+
+	/*	Method to get a list of all edges in the graph
+		@return
+			Each entry of the return list is an edge (pair of <sourceId, targetId>)*/
 	vector<pair<int, int>>& GetEdgeList() { return edgeList; };
+
+
+	/*	Method to get a list of all vertices in the graph
+		@return
+			Each entry of the return list is a vertex and a list of its neighbors*/
 	tsl::hopscotch_map<int, vector<int>>& GetVertexList() { return vertexList; };
-	//tsl::hopscotch_map<int, int> GetVertexLabeledList() { return vertexLabeledList; };
+	
 
-
+	/*	Method to add a vertex to the graph
+		@param 
+			id: the id number of the vertex
+		@return
+			A pair of <iterator to the added vertex entry, boolean (True if that successfully added new vertex; 
+				False if such vertex already exist)>*/		
 	pair<tsl::hopscotch_map<int, vector<int>>::iterator, bool> add_vertex(const int &id);
+
+
+	/*	Method to add an edge to the graph (update the edgeList)
+		@param 
+			source & target: the id number of the source and target vertex
+		@return
+			True if successfully added new edge, False if such edge already exist in the graph*/
 	bool add_edge(const int &source, const int &target);
+	
 
-
-	/*Method to add vertices and edges to this graph
-	Parameter:
-	edgeList: list of edges to be added, each pair entry is 1 edge as <sourceId, targetId>
-	if source or target vertex is not in the graph yet, will add them*/
+	/*	Method to add vertices and edges to this graph
+		@param
+			edgeList: list of edges to be added, each pair entry is 1 edge as <sourceId, targetId>
+				if source and/or target vertex is not in the graph yet, will add them*/
 	void AddVerticesAndEdgeRange(vector<pair<int, int>> &edgeList);
 
-	/*Method to get the degree sequence of all vertices in descending order
-	This only give the degree sequence, not the vertex ID
-	To get vertex ID sorted by degree sequence use GetNodesSortedByDegree(int count)*/
+
+	/*	Method to get the degree sequence of all vertices in descending order
+			This only give the degree sequence, not the vertex ID
+			To get vertex ID sorted by degree sequence use GetNodesSortedByDegree()
+		@return
+			The degree sequence of all vertices in descending order*/
 	vector<int> GetDegreeSequence();
 
-	/*Method to get a list of all neighboring/adjacent vertex ID
-	Parameter:
-	sourceId: ID of the source vertex which you want to find its neighbors*/
+
+	/*	Method to get a list of all neighboring/adjacent vertex ID
+		@param
+			sourceId: ID of the source vertex which you want to find its neighbors
+		@return
+			List of IDs of all of source's neighbors*/
 	vector<int>& GetNeighbors(const int &sourceId);
 
+
+	/*	Method to get the out degree of a vertex
+		@param
+			sourceId: ID of the source vertex which you want to find its out degree
+		@return
+			Out degree of the vertex*/
 	int GetOutDegree(const int &sourceId) { return vertexList.at(sourceId).size(); };
 
+
+	/*	Method to check if an edge exists in the graph
+		@param
+			source & target: the id number of the source and target vertex
+		@return
+			True if the edge exists, False otherwise*/
 	bool TryGetEdge(const int &source, const int &target);
+	
 
-
-	/*Method to get a list of vertices sorted by their degree sequence in descending order
-	Parameter:
-	count: the number of expected vertices (start with highest degree sequence) to return
-	For example, there are 10 vertices in the graph, but you only want the top 4
-	of the vertices sorted by degree other, then count = 4. If count > # of vertices
-	in the graph, count = # of vertices*/
+	/*	Method to get a list of vertices sorted by their degree sequence in ascending order
+		@param
+			degreeCutOff: the threshold of out degree that we want to check
+				For example, threshold = 5 means only vertices with out degree >= 5 will be checked and sorted
+		@return
+			A list of nodes' IDs sorted by out degree in ascending order*/
 	vector<int> GetNodesSortedByDegree(const int & degreeCutOff);
 
 private:
 	tsl::hopscotch_map<int, vector<int>> vertexList;	 //list of vertices
-	//tsl::hopscotch_map<int, int> vertexLabeledList;
-	vector<pair<int, int>> edgeList;
+	vector<pair<int, int>> edgeList;	//list of edges
 };
 
 
