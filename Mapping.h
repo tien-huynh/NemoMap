@@ -1,9 +1,3 @@
-/*	Filename:		Mapping.h
-	Description:	Declaration of a class representing the mapping of vertices between two graphs
-					******NOTE******: no longer needed with current implementation
-	Author:			Tien Huynh
-*/
-
 #pragma once
 #include<string>
 #include<map>
@@ -22,6 +16,7 @@ namespace ParaMODAImpl
    public:
 	  Mapping();
 	  Mapping(const Mapping &mapping);
+	  //Mapping(tsl::hopscotch_map<int, int> function, int subGraphEdgeCount);
 	  Mapping(tsl::hopscotch_map<int, int> function);
 	  ~Mapping();
 
@@ -32,6 +27,9 @@ namespace ParaMODAImpl
 	  void setSubGraphEdgeCount(int subGraphEdgeCount) { SubGraphEdgeCount = subGraphEdgeCount; };
 	  tsl::hopscotch_map<int, int> getFunction() const { return Function; };
 	  void setFunction(tsl::hopscotch_map<int, int> function) { Function = function; };
+
+	  //Methods
+	  //QuickGraph::Edge<int>^ GetImage(QuickGraph::UndirectedGraph<int>^ inputGraph, QuickGraph::Edge<int>^ newlyAddedEdge);		NEED FURTHER IMPLEMENT
 
 	  //Overload equal operator for comparing Mapping objects
 	  //	  all <key,value> pairs must be the same in both objects
