@@ -1,17 +1,20 @@
+/*	Filename:		GraphProcessor.cpp
+	Description:	Implementation of a class to read in graph data from a text file an construct the graph
+	Author:			Tien Huynh
+*/
 #include "GraphProcessor.h"
-
 
 
 ParaMODAImpl::GraphProcessor::GraphProcessor()
 {
 }
 
+
 ParaMODAImpl::GraphProcessor::~GraphProcessor()
 {
 }
 
 
-//Method to read graph input from file and construct inputGraph
 Graph ParaMODAImpl::GraphProcessor::LoadGraph(string filename)
 {
    string line;
@@ -25,13 +28,13 @@ Graph ParaMODAImpl::GraphProcessor::LoadGraph(string filename)
 	  {
 		 if (int index = line.find_first_not_of(" ") != string::npos)
 		 {
-			if (line[index] != '#')
+			if (line[index] != '#')	//# character marks comment line
 			{
 			   int source, target;
 
 			   istringstream iss(line);
 				  iss >> source >> target;
-				  if (source != target)
+				  if (source != target)	//Don't allow self-edge
 					edgeList.push_back(make_pair(source, target));
 			}
 		 }
@@ -40,7 +43,7 @@ Graph ParaMODAImpl::GraphProcessor::LoadGraph(string filename)
 	  inFile.close();
    }
    else
-	  cerr << "ERROR: Unable to open file" << endl;	  //NEED FURTHER CHECK
+	  cerr << "ERROR: Unable to open file" << endl;
    return newGraphInstance;
 }
 

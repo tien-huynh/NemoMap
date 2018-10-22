@@ -1,3 +1,9 @@
+/*	Filename:		Mapping.cpp
+	Description:	Implementation of a class representing the mapping of vertices between two graphs
+					******NOTE******: no longer needed with current implementation
+	Author:			Tien Huynh
+*/
+
 #include "Mapping.h"
 
 
@@ -25,26 +31,6 @@ ParaMODAImpl::Mapping::~Mapping()
 }
 
 
-
-
-////NEED FURTHER CHECK for correct quickgraph integration
-//QuickGraph::Edge<int>^ ParaMODAImpl::Mapping::GetImage(QuickGraph::UndirectedGraph<int>^ inputGraph, QuickGraph::Edge<int>^ newlyAddedEdge)
-//{
-//   QuickGraph::Edge<int>% image = QuickGraph::Edge<int>();
-//   int source = (int)(newlyAddedEdge->Source);
-//   int target = (int)(newlyAddedEdge->Target);
-//   try
-//   {
-//	  if (inputGraph->TryGetEdge(this->Function.at(source), this->Function.at(target), image))
-//		 return image;
-//   }
-//   catch (out_of_range) {}
-//   return QuickGraph::Edge<int>(DefaultEdgeNodeVal, DefaultEdgeNodeVal);
-//}
-
-
-
-
 //Overload equal operator for comparing Mapping objects
 //	  all <key,value> pairs must be the same in both objects
 bool ParaMODAImpl::Mapping::operator==(const Mapping & other) const
@@ -69,7 +55,6 @@ bool ParaMODAImpl::Mapping::operator==(const Mapping & other) const
    }
    return true;
 }
-
 
 
 string ParaMODAImpl::Mapping::GetMappedNodes()
