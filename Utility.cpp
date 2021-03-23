@@ -370,7 +370,7 @@ long ParaMODAImpl::Algorithm2_Modified(Graph & queryGraph, Graph & inputGraph, c
 		mappingCount += IsomorphicExtension(f, queryGraph, inputGraph, condition);
 	}
 
-	cout << "total nodes check: " << findMCount << endl;
+	//cout << "total nodes check: " << findMCount << endl; //should this be removed?
 	
 	string result = "\nSub-graph: Graph Edges:\t";
 	vector<pair<int, int>> qGraphs(queryGraph.GetEdgeList());

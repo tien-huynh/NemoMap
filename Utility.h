@@ -222,7 +222,7 @@ namespace ParaMODAImpl
 			n: ID number of node n of target graph
 		@return
 			True if the symmetry-breaking condition is satisfied and the mapping is okay, False == mapping not okay*/
-	*/
+			
 	bool CheckSymmetryBreak(const int & fixed, const vector<int> & nodesToCheck, tsl::hopscotch_map<int, int>& partialMap, int & m, int & n);
 
 
